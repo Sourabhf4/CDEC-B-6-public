@@ -6,8 +6,11 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-# Use Amazon Corretto (more stable TLS implementation) or older Temurin
-FROM amazoncorretto:17-alpine
+FROM eclipse-temurin:17-jre-alpine
+
+# Install ca-certificates to enable SSL/TLS validation for MongoDB Atlas
+RUN apk add --no-cache ca-certificates && \
+    update-ca-certificates
 
 WORKDIR /app
 
