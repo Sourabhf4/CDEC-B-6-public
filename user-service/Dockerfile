@@ -6,7 +6,8 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre-alpine
+# Use Amazon Corretto (more stable TLS implementation) or older Temurin
+FROM amazoncorretto:17-alpine
 
 WORKDIR /app
 

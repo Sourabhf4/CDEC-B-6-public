@@ -8,6 +8,10 @@ RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 
+# Install ca-certificates to enable SSL/TLS validation for MongoDB Atlas
+RUN apk add --no-cache ca-certificates && \
+    update-ca-certificates
+
 WORKDIR /app
 
 COPY --from=build /app/target/order-service-*.jar app.jar

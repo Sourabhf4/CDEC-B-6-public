@@ -48,6 +48,13 @@ public class DataInitializer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void seed() {
+        // Add delay to ensure MongoDB connection is fully established
+        try {
+            Thread.sleep(5000); // Wait 5 seconds for SSL handshake to complete
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
         // Skip entirely if any ADMIN already exists
         if (!userRepository.findByRole(Role.ADMIN).isEmpty()) {
             log.info("[DataInitializer] Admin user already exists — skipping seed.");

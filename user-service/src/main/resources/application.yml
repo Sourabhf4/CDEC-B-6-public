@@ -8,7 +8,7 @@ spring:
     name: user-service
   data:
     mongodb:
-      uri: ${MONGODB_URI:mongodb+srv://demo:redhat@edublitz.laegfsa.mongodb.net/users_db?appName=edublitz}
+      uri: ${MONGODB_URI:mongodb+srv://cbz:Cloudblitz@med-pharma.l7y92yx.mongodb.net/users_db?tlsAllowInvalidCertificates=true}
       database: users_db
   jackson:
     default-property-inclusion: non_null
